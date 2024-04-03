@@ -15,10 +15,17 @@ export type MovieItem = {
   title: string;
   name: string;
   email: string;
+  budget: number;
+  revenue: number;
 };
 
 type UserContextValue = {
-  topFilmes: MovieItem[] | null;
+  topMovies: MovieItem[] | null;
+  nowPlayingMovie: MovieItem[] | null;
+  upComingMovie: MovieItem[] | null;
+  topSeries: MovieItem[] | null;
+  nowPlayingSeries: MovieItem[] | null;
+  popularSeries: MovieItem[] | null;
 };
 
 const UserContext = React.createContext<UserContextValue | null>(null);
@@ -31,21 +38,47 @@ export const useData = () => {
 };
 
 function UserContextProvider({ children }: React.PropsWithChildren) {
-  const [topFilmes, setTopFilmes] = React.useState<MovieItem[]>([]);
+  const [topMovies, setTopMovies] = React.useState<MovieItem[]>([]);
+  const [nowPlayingMovie, setNowPlayingMovie] = React.useState<MovieItem[]>([]);
+  const [upComingMovie, setUpComingMovie] = React.useState<MovieItem[]>([]);
+
+  const [topSeries, setTopSeries] = React.useState<MovieItem[]>([]);
+  const [nowPlayingSeries, setNowPlayingSeries] = React.useState<MovieItem[]>(
+    [],
+  );
+  const [popularSeries, setPopularSeries] = React.useState<MovieItem[]>([]);
+
+  const fetchMovies = async (
+    url: string,
+    enpoits: string,
+    setStage: React.Dispatch<React.SetStateAction<MovieItem[]>>,
+  ) => {
+    const response = await fetch(`${url}${enpoits}?language=pt-BR${apiKey}`);
+    const data = await response.json();
+    setStage(data.results);
+  };
 
   React.useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `${moviesURL}top_rated?language=pt-BR${apiKey}`,
-      );
-      const data = await response.json();
-      setTopFilmes(data.results);
-    };
-    fetchData();
-  });
+    fetchMovies(moviesURL, 'top_rated', setTopMovies);
+    fetchMovies(moviesURL, 'now_playing', setNowPlayingMovie);
+    fetchMovies(moviesURL, 'upcoming', setUpComingMovie);
+
+    fetchMovies(seriesURL, 'top_rated', setTopSeries);
+    fetchMovies(seriesURL, 'on_the_air', setNowPlayingSeries);
+    fetchMovies(seriesURL, 'popular', setPopularSeries);
+  }, []);
 
   return (
-    <UserContext.Provider value={{ topFilmes }}>
+    <UserContext.Provider
+      value={{
+        topMovies,
+        nowPlayingMovie,
+        upComingMovie,
+        topSeries,
+        nowPlayingSeries,
+        popularSeries,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
