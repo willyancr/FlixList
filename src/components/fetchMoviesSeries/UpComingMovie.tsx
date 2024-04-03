@@ -3,11 +3,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useNavigate } from 'react-router-dom';
 
 const movieIMG = import.meta.env.VITE_IMG;
 
 function UpComingMovie() {
   const { upComingMovie } = useData();
+  const navigate = useNavigate();
   return (
     <div>
       <h2 className="border-b border-projeto-border/50 mb-6">
@@ -26,7 +28,7 @@ function UpComingMovie() {
           {upComingMovie?.map((item: MovieItem) => (
             <SwiperSlide
               key={item.id}
-              // onClick={() => navigate(`/movie/${item.id}`)}
+              onClick={() => navigate(`/infomovie/${item.id}`)}
             >
               <img
                 src={`${movieIMG}${item.poster_path}`}

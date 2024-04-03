@@ -7,13 +7,13 @@ import { useNavigate } from 'react-router-dom';
 
 const movieIMG = import.meta.env.VITE_IMG;
 
-function TopMovies() {
-  const { topMovies } = useData();
+function NowPlayingSeries() {
+  const { nowPlayingSeries } = useData();
   const navigate = useNavigate();
   return (
     <div>
       <h2 className="border-b border-projeto-border/50 mb-6">
-        Top <span>{topMovies?.length}</span> filmes mais bem avaliados
+        As <span>{nowPlayingSeries?.length}</span> séries de TV em exibição
       </h2>
       <div className="grid grid-cols-5 gap-1">
         <Swiper
@@ -25,11 +25,10 @@ function TopMovies() {
           modules={[Pagination]}
           className="h-[200px] max-w-[740px] "
         >
-          {topMovies?.map((item: MovieItem) => (
+          {nowPlayingSeries?.map((item: MovieItem) => (
             <SwiperSlide
               key={item.id}
               onClick={() => navigate(`/infomovie/${item.id}`)}
-
             >
               <img
                 src={`${movieIMG}${item.poster_path}`}
@@ -44,4 +43,4 @@ function TopMovies() {
   );
 }
 
-export default TopMovies;
+export default NowPlayingSeries;
