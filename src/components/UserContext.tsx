@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const moviesURL = import.meta.env.VITE_API_MOVIE;
 const seriesURL = import.meta.env.VITE_API_SERIES;
@@ -26,6 +27,8 @@ type UserContextValue = {
   topSeries: MovieItem[] | null;
   nowPlayingSeries: MovieItem[] | null;
   popularSeries: MovieItem[] | null;
+  selectedItem: string | null;
+  handleClick: (item: string) => void;
 };
 
 const UserContext = React.createContext<UserContextValue | null>(null);
@@ -41,12 +44,16 @@ function UserContextProvider({ children }: React.PropsWithChildren) {
   const [topMovies, setTopMovies] = React.useState<MovieItem[]>([]);
   const [nowPlayingMovie, setNowPlayingMovie] = React.useState<MovieItem[]>([]);
   const [upComingMovie, setUpComingMovie] = React.useState<MovieItem[]>([]);
-
   const [topSeries, setTopSeries] = React.useState<MovieItem[]>([]);
   const [nowPlayingSeries, setNowPlayingSeries] = React.useState<MovieItem[]>(
     [],
   );
   const [popularSeries, setPopularSeries] = React.useState<MovieItem[]>([]);
+  const [selectedItem, setSelectedItem] = React.useState<string | null>(null);
+
+  const handleClick = (item: string) => {
+    setSelectedItem(item);
+  };
 
   const fetchMovies = async (
     url: string,
@@ -77,6 +84,8 @@ function UserContextProvider({ children }: React.PropsWithChildren) {
         topSeries,
         nowPlayingSeries,
         popularSeries,
+        selectedItem,
+        handleClick,
       }}
     >
       {children}
