@@ -19,7 +19,7 @@ function App() {
             <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/series" element={<Series />} />
-            <Route path="/infomovie/:id" element={<InfoMovie />} />
+            <Route path="/infomovie" element={<InfoMovie />} />
           </Routes>
         </BrowserRouter>
       </UserContextProvider>
