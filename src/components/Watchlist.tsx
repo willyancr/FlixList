@@ -1,5 +1,4 @@
-import React from 'react';
-import Header from './Header';
+import Header from './Header/Header';
 
 function Watchlist() {
   const capaFilme = [
@@ -22,7 +21,7 @@ function Watchlist() {
               src={item[0].path}
               alt=""
               key={item[0].id}
-              className="rounded cursor-pointer hover:border border-blue-600"
+              className="rounded cursor-pointer hover:border border-blue-600 hover:scale-105 transition ease-linear duration-1000"
             />
           ))}
         </div>
