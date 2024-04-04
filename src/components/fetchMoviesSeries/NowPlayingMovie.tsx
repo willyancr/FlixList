@@ -1,17 +1,16 @@
 import { useData, MovieItem } from '../UserContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+import { Link, useNavigate } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useNavigate } from 'react-router-dom';
 
 const movieIMG = import.meta.env.VITE_IMG;
 
 function NowPlayingMovie() {
-  const { nowPlayingMovie } = useData();
-  const navigate = useNavigate();
+  const { nowPlayingMovie, handleClickMovie } = useData();
   return (
-    <div>
+    <div className="mt-6">
       <h2 className="border-b border-projeto-border/50 mb-6">
         Os <span>{nowPlayingMovie?.length}</span> filmes mais recentes.
       </h2>
@@ -23,18 +22,20 @@ function NowPlayingMovie() {
             clickable: false,
           }}
           modules={[Pagination]}
-          className="h-[200px] max-w-[740px] "
+          className="swiperCapa"
         >
           {nowPlayingMovie?.map((item: MovieItem) => (
             <SwiperSlide
               key={item.id}
-              onClick={() => navigate(`/infomovie/${item.id}`)}
+              onClick={() => handleClickMovie(item.id)}
             >
-              <img
-                src={`${movieIMG}${item.poster_path}`}
-                alt=""
-                className="rounded cursor-pointer hover:border border-blue-600"
-              />
+              <Link to={`/infofilmes/${item.title}`}>
+                <img
+                  src={`${movieIMG}${item.poster_path}`}
+                  alt=""
+                  className="rounded cursor-pointer hover:border border-blue-600"
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
