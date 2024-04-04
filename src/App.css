@@ -10,6 +10,10 @@
 body {
   background-color: #101316;
 }
+.swiperCapa {
+  height: 200px;
+  max-width: 840px;
+}
 /* Estilizações para o scroll */
 ::-webkit-scrollbar {
   width: 10px; /* Largura do scroll */
