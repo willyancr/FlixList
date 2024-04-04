@@ -10,7 +10,7 @@ type MenuProps = {
 function HandleMenus({ title, selected, icon, onClick }: MenuProps) {
   return (
     <div
-      className={`flex items-center gap-3 p-2 cursor-pointer hover:bg-projeto-border rounded ease-in duration-150 ${
+      className={`px-4 flex items-center gap-3 p-2 cursor-pointer hover:text-white rounded transition ease-in duration-150 ${
         selected
           ? 'bg-projeto-tertiary/80 text-white rounded ease-in duration-150'
           : ''

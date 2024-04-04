@@ -20,7 +20,7 @@ function SideBar() {
         <Clapperboard className="text-projeto-tertiary" size={32} />
         <h1 className="text-3xl text-white font-bold">FlixList</h1>
       </nav>
-      <nav className="flex flex-col gap-5 px-4 py-10 ">
+      <nav className="flex flex-col gap-5 py-10 ">
         <Link to={'/'}>
           <HandleMenus
             title="Home"
