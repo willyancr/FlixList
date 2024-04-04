@@ -23,12 +23,12 @@ function TopMovies() {
             clickable: false,
           }}
           modules={[Pagination]}
-          className="h-[200px] max-w-[740px] "
+          className="swiperCapa"
         >
           {topMovies?.map((item: MovieItem) => (
             <SwiperSlide
               key={item.id}
-              onClick={() => navigate(`/infomovie/${item.id}`)}
+              onClick={() => navigate(`/infomovie`)}
 
             >
               <img

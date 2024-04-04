@@ -23,13 +23,10 @@ function UpComingMovie() {
             clickable: false,
           }}
           modules={[Pagination]}
-          className="h-[200px] max-w-[740px] "
+          className="swiperCapa"
         >
           {upComingMovie?.map((item: MovieItem) => (
-            <SwiperSlide
-              key={item.id}
-              onClick={() => navigate(`/infomovie/${item.id}`)}
-            >
+            <SwiperSlide key={item.id} onClick={() => navigate(`/infomovie`)}>
               <img
                 src={`${movieIMG}${item.poster_path}`}
                 alt=""
