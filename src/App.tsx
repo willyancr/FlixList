@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import SideBar from './components/SideBar/SideBar';
+import SideBar from './components/SideBar';
 import Watchlist from './components/Watchlist';
 import Home from './components/Home';
 import UserContextProvider from './components/UserContext';
@@ -17,9 +17,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/watchlist" element={<Watchlist />} />
-            <Route path="/movies" element={<Movies />} />
+            <Route path="/filmes" element={<Movies />} />
             <Route path="/series" element={<Series />} />
-            <Route path="/infomovie" element={<InfoMovie />} />
+            <Route path="/infofilmes/:id" element={<InfoMovie />} />
           </Routes>
         </BrowserRouter>
       </UserContextProvider>
