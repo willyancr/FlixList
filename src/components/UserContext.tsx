@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const moviesURL = import.meta.env.VITE_API_MOVIE;
 const seriesURL = import.meta.env.VITE_API_SERIES;
@@ -14,10 +13,16 @@ export type MovieItem = {
   poster_path: string;
   release_date: string;
   title: string;
-  name: string;
-  email: string;
+  vote_average: number;
+  runtime: number;
   budget: number;
   revenue: number;
+  genres: [
+    {
+      id: number;
+      name: string;
+    },
+  ];
 };
 
 type UserContextValue = {
@@ -28,7 +33,9 @@ type UserContextValue = {
   nowPlayingSeries: MovieItem[] | null;
   popularSeries: MovieItem[] | null;
   selectedItem: string | null;
+  selectedMovie: number | null;
   handleClick: (item: string) => void;
+  handleClickMovie: (id: number) => void;
 };
 
 const UserContext = React.createContext<UserContextValue | null>(null);
@@ -50,6 +57,11 @@ function UserContextProvider({ children }: React.PropsWithChildren) {
   );
   const [popularSeries, setPopularSeries] = React.useState<MovieItem[]>([]);
   const [selectedItem, setSelectedItem] = React.useState<string | null>(null);
+  const [selectedMovie, setSelectedMovie] = React.useState<number | null>(null);
+
+  const handleClickMovie = (id: number) => {
+    setSelectedMovie(id);
+  };
 
   const handleClick = (item: string) => {
     setSelectedItem(item);
@@ -86,6 +98,8 @@ function UserContextProvider({ children }: React.PropsWithChildren) {
         popularSeries,
         selectedItem,
         handleClick,
+        selectedMovie,
+        handleClickMovie,
       }}
     >
       {children}
