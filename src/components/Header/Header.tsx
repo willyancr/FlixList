@@ -5,31 +5,31 @@ import HandleMenus from '../HandleMenus';
 import { useData } from '../UserContext';
 
 function Header() {
-  const { selectedItem, handleClick } = useData();
+  const { selectedItemMenu, handleClickMenu } = useData();
 
   return (
     <header>
       <nav className="flex justify-between h-10 px-9 py-12">
         <div className="flex items-center gap-5 font-bold cursor-pointer text-xl">
-          <Link to={'/filmes'} >
+          <Link to={'/filmes'}>
             <HandleMenus
               title="Filmes"
-              selected={selectedItem === 'filmes'}
-              onClick={() => handleClick('filmes')}
+              selected={selectedItemMenu === 'filmes'}
+              onClick={() => handleClickMenu('filmes')}
             />
           </Link>
           <Link to={'/series'}>
             <HandleMenus
               title="Series"
-              selected={selectedItem === 'series'}
-              onClick={() => handleClick('series')}
+              selected={selectedItemMenu === 'series'}
+              onClick={() => handleClickMenu('series')}
             />
           </Link>
           <Link to={'/'}>
             <HandleMenus
               title="Animes"
-              selected={selectedItem === 'animes'}
-              onClick={() => handleClick('')}
+              selected={selectedItemMenu === 'animes'}
+              onClick={() => handleClickMenu('')}
             />
           </Link>
         </div>
