@@ -3,13 +3,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const movieIMG = import.meta.env.VITE_IMG;
 
 function TopMovies() {
-  const { topMovies } = useData();
-  const navigate = useNavigate();
+  const { topMovies, handleClickMovieSerie } = useData();
   return (
     <div>
       <h2 className="border-b border-projeto-border/50 mb-6">
@@ -28,14 +27,15 @@ function TopMovies() {
           {topMovies?.map((item: MovieItem) => (
             <SwiperSlide
               key={item.id}
-              onClick={() => navigate(`/infomovie`)}
-
+              onClick={() => handleClickMovieSerie(item.id)}
             >
-              <img
-                src={`${movieIMG}${item.poster_path}`}
-                alt=""
-                className="rounded cursor-pointer hover:border border-blue-600"
-              />
+              <Link to={`/infofilmes/${item.title}`}>
+                <img
+                  src={`${movieIMG}${item.poster_path}`}
+                  alt=""
+                  className="rounded cursor-pointer hover:border border-blue-600"
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

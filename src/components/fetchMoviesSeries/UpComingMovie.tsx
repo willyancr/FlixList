@@ -1,17 +1,16 @@
 import { useData, MovieItem } from '../UserContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useNavigate } from 'react-router-dom';
 
 const movieIMG = import.meta.env.VITE_IMG;
 
 function UpComingMovie() {
-  const { upComingMovie } = useData();
-  const navigate = useNavigate();
+  const { upComingMovie, handleClickMovieSerie } = useData();
   return (
-    <div>
+    <div className="mt-6">
       <h2 className="border-b border-projeto-border/50 mb-6">
         Os <span>{upComingMovie?.length}</span> filmes a serem lançados.
       </h2>
@@ -26,12 +25,17 @@ function UpComingMovie() {
           className="swiperCapa"
         >
           {upComingMovie?.map((item: MovieItem) => (
-            <SwiperSlide key={item.id} onClick={() => navigate(`/infomovie`)}>
-              <img
-                src={`${movieIMG}${item.poster_path}`}
-                alt=""
-                className="rounded cursor-pointer hover:border border-blue-600"
-              />
+            <SwiperSlide
+              key={item.id}
+              onClick={() => handleClickMovieSerie(item.id)}
+            >
+              <Link to={`/infofilmes/${item.title}`}>
+                <img
+                  src={`${movieIMG}${item.poster_path}`}
+                  alt=""
+                  className="rounded cursor-pointer hover:border border-blue-600"
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

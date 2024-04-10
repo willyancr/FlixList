@@ -1,14 +1,14 @@
 import { useData, MovieItem } from '../UserContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 const movieIMG = import.meta.env.VITE_IMG;
 
 function NowPlayingMovie() {
-  const { nowPlayingMovie, handleClickMovie } = useData();
+  const { nowPlayingMovie, handleClickMovieSerie } = useData();
   return (
     <div className="mt-6">
       <h2 className="border-b border-projeto-border/50 mb-6">
@@ -27,7 +27,7 @@ function NowPlayingMovie() {
           {nowPlayingMovie?.map((item: MovieItem) => (
             <SwiperSlide
               key={item.id}
-              onClick={() => handleClickMovie(item.id)}
+              onClick={() => handleClickMovieSerie(item.id)}
             >
               <Link to={`/infofilmes/${item.title}`}>
                 <img
