@@ -4,7 +4,7 @@ import SideBar from './components/SideBar';
 import Watchlist from './components/Watchlist';
 import Home from './components/Home';
 import UserContextProvider from './components/UserContext';
-import InfoMovie from './components/InfoMovie';
+import InfoMovie from './components/InfoMovieSerie/InfoMovie';
 import Movies from './components/Header/Movies';
 import Series from './components/Header/Series';
 
