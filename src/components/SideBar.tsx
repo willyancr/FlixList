@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Clapperboard,
   Home,
@@ -12,10 +11,10 @@ import { useData } from './UserContext';
 import { Link } from 'react-router-dom';
 
 function SideBar() {
-  const { selectedItem, handleClick } = useData();
+  const { selectedItemMenu, handleClick } = useData();
 
   return (
-    <div className="grid grid-rows-[100px_1fr_1fr] grid-flow-col min-w-60 bg-projeto-secondary border-r border-projeto-border/30 h-screen">
+    <div className="grid grid-rows-[100px_1fr_1fr] grid-flow-col min-w-52 bg-projeto-secondary border-r border-projeto-border/30 h-screen">
       <nav className="flex items-center gap-2 justify-center">
         <Clapperboard className="text-projeto-tertiary" size={32} />
         <h1 className="text-3xl text-white font-bold">FlixList</h1>
@@ -24,7 +23,7 @@ function SideBar() {
         <Link to={'/'}>
           <HandleMenus
             title="Home"
-            selected={selectedItem === ''}
+            selected={selectedItemMenu === ''}
             icon={<Home size={20} />}
             onClick={() => handleClick('')}
           />
@@ -32,7 +31,7 @@ function SideBar() {
         <Link to={'/watchlist'}>
           <HandleMenus
             title="Watchlist"
-            selected={selectedItem === 'watchlist'}
+            selected={selectedItemMenu === 'watchlist'}
             icon={<Clock3 size={20} />}
             onClick={() => handleClick('watchlist')}
           />
@@ -40,7 +39,7 @@ function SideBar() {
         <Link to={'/assistido'}>
           <HandleMenus
             title="Assitidos"
-            selected={selectedItem === 'assistido'}
+            selected={selectedItemMenu === 'assistido'}
             icon={<TicketCheck size={20} />}
             onClick={() => handleClick('assistido')}
           />
