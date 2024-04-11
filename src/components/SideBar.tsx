@@ -11,7 +11,7 @@ import { useData } from './UserContext';
 import { Link } from 'react-router-dom';
 
 function SideBar() {
-  const { selectedItemMenu, handleClick } = useData();
+  const { selectedItemMenu, handleClickMenu } = useData();
 
   return (
     <div className="grid grid-rows-[100px_1fr_1fr] grid-flow-col min-w-52 bg-projeto-secondary border-r border-projeto-border/30 h-screen">
@@ -25,7 +25,7 @@ function SideBar() {
             title="Home"
             selected={selectedItemMenu === ''}
             icon={<Home size={20} />}
-            onClick={() => handleClick('')}
+            onClick={() => handleClickMenu('')}
           />
         </Link>
         <Link to={'/watchlist'}>
@@ -33,7 +33,7 @@ function SideBar() {
             title="Watchlist"
             selected={selectedItemMenu === 'watchlist'}
             icon={<Clock3 size={20} />}
-            onClick={() => handleClick('watchlist')}
+            onClick={() => handleClickMenu('watchlist')}
           />
         </Link>
         <Link to={'/assistido'}>
@@ -41,7 +41,7 @@ function SideBar() {
             title="Assitidos"
             selected={selectedItemMenu === 'assistido'}
             icon={<TicketCheck size={20} />}
-            onClick={() => handleClick('assistido')}
+            onClick={() => handleClickMenu('assistido')}
           />
         </Link>
       </nav>
