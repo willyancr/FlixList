@@ -7,6 +7,7 @@ import UserContextProvider from './components/UserContext';
 import InfoMovie from './components/InfoMovieSerie/InfoMovie';
 import Movies from './components/Header/Movies';
 import Series from './components/Header/Series';
+import InfoSerie from './components/InfoMovieSerie/InfoSerie';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/filmes" element={<Movies />} />
             <Route path="/series" element={<Series />} />
             <Route path="/infofilmes/:id" element={<InfoMovie />} />
+            <Route path="/infoseries/:id" element={<InfoSerie />} />
           </Routes>
         </BrowserRouter>
       </UserContextProvider>
