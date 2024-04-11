@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
+import InfosDetails from './InfosDetails';
+import VoteAndAddWatchlist from './VoteAndAddWatchlist';
+import { useEffect, useState } from 'react';
 import { Star, CirclePlus } from 'lucide-react';
-import { MovieItem, useData } from '../UserContext';
+import { useData } from '../UserContext';
+import { MovieItem } from '../Types/MovieItem';
 
 const moviesURL = import.meta.env.VITE_API_MOVIE;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -57,34 +60,33 @@ function InfoMovie() {
               <p className="text-white/60">{infoMovie.overview}</p>
             </div>
             <div className="grid grid-cols-3">
-              <div>
-                <h3 className="font-bold">Título original</h3>
-                <p className="text-white/60">{infoMovie.original_title}</p>
-              </div>
-              <div>
-                <h3 className="font-bold">Idioma original</h3>
-                <p className="text-white/60">{infoMovie.original_language}</p>
-              </div>
-              <div>
-                <h3 className="font-bold">Orçamento</h3>
-                <p className="text-white/60">
-                  {infoMovie.budget?.toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'USD',
-                  })}
-                </p>
-              </div>
+              <InfosDetails
+                label="Título original"
+                title={infoMovie.original_title}
+              />
+              <InfosDetails
+                label="Idioma original"
+                title={infoMovie.original_language}
+              />
+              <InfosDetails
+                label="Orçamento"
+                title={infoMovie.budget?.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'USD',
+                })}
+              />
             </div>
           </div>
           <div className="flex gap-7">
-            <div className="flex items-center gap-1 border border-projeto-tertiary rounded py-2 px-5 text-projeto-tertiary">
-              <Star size={20} />
-              <h3 className="">{infoMovie.vote_average?.toFixed(1)}</h3>
-            </div>
-            <div className="flex items-center gap-1 border border-projeto-tertiary rounded py-2 px-5 text-projeto-tertiary ">
-              <CirclePlus size={20} />
-              <h3 className="">Add Watchlist</h3>
-            </div>
+            <VoteAndAddWatchlist
+              icon={<Star size={20} />}
+              title={infoMovie.vote_average?.toFixed(1)}
+            />
+            <VoteAndAddWatchlist
+              icon={<CirclePlus size={20} />}
+              title="Add Watchlist"
+              className="cursor-pointer"
+            />
           </div>
         </div>
       </main>
