@@ -1,7 +1,8 @@
-import { useData, MovieItem } from '../UserContext';
+import { Link } from 'react-router-dom';
+import { useData } from '../UserContext';
+import { MovieItem } from '../Types/MovieItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -9,11 +10,14 @@ const movieIMG = import.meta.env.VITE_IMG;
 
 function UpComingMovie() {
   const { upComingMovie, handleClickMovieSerie } = useData();
+
   return (
     <div className="mt-6">
+      
       <h2 className="border-b border-projeto-border/50 mb-6">
-        Os <span>{upComingMovie?.length}</span> filmes a serem lançados.
+        Os <span>{upComingMovie?.length}</span> filmes a serem lançados
       </h2>
+
       <div className="grid grid-cols-5 gap-1">
         <Swiper
           slidesPerView={6}
@@ -24,14 +28,14 @@ function UpComingMovie() {
           modules={[Pagination]}
           className="swiperCapa"
         >
-          {upComingMovie?.map((item: MovieItem) => (
+          {upComingMovie?.map((movie: MovieItem) => (
             <SwiperSlide
-              key={item.id}
-              onClick={() => handleClickMovieSerie(item.id)}
+              key={movie.id}
+              onClick={() => handleClickMovieSerie(movie.id)}
             >
-              <Link to={`/infofilmes/${item.title}`}>
+              <Link to={`/infofilmes/${movie.title}`}>
                 <img
-                  src={`${movieIMG}${item.poster_path}`}
+                  src={`${movieIMG}${movie.poster_path}`}
                   alt=""
                   className="rounded cursor-pointer hover:border border-blue-600"
                 />

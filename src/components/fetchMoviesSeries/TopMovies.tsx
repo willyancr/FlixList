@@ -1,9 +1,10 @@
-import { useData, MovieItem } from '../UserContext';
+import { Link } from 'react-router-dom';
+import { MovieItem } from '../Types/MovieItem';
+import { useData } from '../UserContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Link } from 'react-router-dom';
 
 const movieIMG = import.meta.env.VITE_IMG;
 
@@ -24,14 +25,14 @@ function TopMovies() {
           modules={[Pagination]}
           className="swiperCapa"
         >
-          {topMovies?.map((item: MovieItem) => (
+          {topMovies?.map((movie: MovieItem) => (
             <SwiperSlide
-              key={item.id}
-              onClick={() => handleClickMovieSerie(item.id)}
+              key={movie.id}
+              onClick={() => handleClickMovieSerie(movie.id)}
             >
-              <Link to={`/infofilmes/${item.title}`}>
+              <Link to={`/infofilmes/${movie.title}`}>
                 <img
-                  src={`${movieIMG}${item.poster_path}`}
+                  src={`${movieIMG}${movie.poster_path}`}
                   alt=""
                   className="rounded cursor-pointer hover:border border-blue-600"
                 />
