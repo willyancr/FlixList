@@ -1,17 +1,18 @@
-import { useData, MovieItem } from '../UserContext';
+import { useData } from '../UserContext';
+import { Link } from 'react-router-dom';
+import { MovieItem } from '../Types/MovieItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useNavigate } from 'react-router-dom';
 
-const movieIMG = import.meta.env.VITE_IMG;
+const serieIMG = import.meta.env.VITE_IMG;
 
 function PopularSeries() {
-  const { popularSeries } = useData();
-  const navigate = useNavigate();
+  const { popularSeries, handleClickMovieSerie } = useData();
+
   return (
-    <div>
+    <div className="mt-6">
       <h2 className="border-b border-projeto-border/50 mb-6">
         As <span>{popularSeries?.length}</span> séries de TV populares
       </h2>
@@ -25,16 +26,18 @@ function PopularSeries() {
           modules={[Pagination]}
           className="swiperCapa"
         >
-          {popularSeries?.map((item: MovieItem) => (
+          {popularSeries?.map((serie: MovieItem) => (
             <SwiperSlide
-              key={item.id}
-              onClick={() => navigate(`/infomovie`)}
+              key={serie.id}
+              onClick={() => handleClickMovieSerie(serie.id)}
             >
-              <img
-                src={`${movieIMG}${item.poster_path}`}
-                alt=""
-                className="rounded cursor-pointer hover:border border-blue-600"
-              />
+              <Link to={`/infoseries/${serie.name}`}>
+                <img
+                  src={`${serieIMG}${serie.poster_path}`}
+                  alt=""
+                  className="rounded cursor-pointer hover:border border-blue-600"
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

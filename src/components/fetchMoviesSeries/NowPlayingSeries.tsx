@@ -1,17 +1,17 @@
-import { useData, MovieItem } from '../UserContext';
+import { Link } from 'react-router-dom';
+import { useData } from '../UserContext';
+import { MovieItem } from '../Types/MovieItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useNavigate } from 'react-router-dom';
 
-const movieIMG = import.meta.env.VITE_IMG;
+const serieIMG = import.meta.env.VITE_IMG;
 
 function NowPlayingSeries() {
-  const { nowPlayingSeries } = useData();
-  const navigate = useNavigate();
+  const { nowPlayingSeries, handleClickMovieSerie } = useData();
   return (
-    <div>
+    <div className="mt-6">
       <h2 className="border-b border-projeto-border/50 mb-6">
         As <span>{nowPlayingSeries?.length}</span> séries de TV em exibição
       </h2>
@@ -28,13 +28,15 @@ function NowPlayingSeries() {
           {nowPlayingSeries?.map((item: MovieItem) => (
             <SwiperSlide
               key={item.id}
-              onClick={() => navigate(`/infomovie`)}
+              onClick={() => handleClickMovieSerie(item.id)}
             >
-              <img
-                src={`${movieIMG}${item.poster_path}`}
-                alt=""
-                className="rounded cursor-pointer hover:border border-blue-600"
-              />
+              <Link to={`/infoseries/${item.title}`}>
+                <img
+                  src={`${serieIMG}${item.poster_path}`}
+                  alt=""
+                  className="rounded cursor-pointer hover:border border-blue-600"
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
