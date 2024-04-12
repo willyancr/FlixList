@@ -1,29 +1,13 @@
 import Header from '../Header/Header';
 import InfosDetails from './InfosDetails';
 import VoteAndAddWatchlist from './VoteAndAddWatchlist';
-import { useEffect, useState } from 'react';
 import { Star, CirclePlus } from 'lucide-react';
-import { useData } from '../UserContext';
-import { MovieItem } from '../Types/MovieItem';
+import { useDataMovie } from '../Context/UserContextMovies';
 
-const moviesURL = import.meta.env.VITE_API_MOVIE;
-const apiKey = import.meta.env.VITE_API_KEY;
 const movieIMG = import.meta.env.VITE_IMG;
 
 function InfoMovie() {
-  const { selectedMovieSerie } = useData();
-  const [infoMovie, setInfoMovie] = useState({} as MovieItem);
-
-  useEffect(() => {
-    const fetchInfoMovie = async () => {
-      const response = await fetch(
-        `${moviesURL}${selectedMovieSerie}?language=pt-BR${apiKey}`,
-      );
-      const data = await response.json();
-      setInfoMovie(data);
-    };
-    fetchInfoMovie();
-  }, [selectedMovieSerie]);
+  const { infoMovie, handleClickPath } = useDataMovie();
 
   const convertRuntime = (runtime: number) => {
     const hours = Math.floor(runtime / 60);
@@ -83,6 +67,13 @@ function InfoMovie() {
               title={infoMovie.vote_average?.toFixed(1)}
             />
             <VoteAndAddWatchlist
+              onClick={() =>
+                handleClickPath(
+                  infoMovie.poster_path,
+                  infoMovie.title,
+                  infoMovie.id,
+                )
+              }
               icon={<CirclePlus size={20} />}
               title="Add Watchlist"
               className="cursor-pointer"

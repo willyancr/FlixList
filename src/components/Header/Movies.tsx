@@ -8,9 +8,9 @@ function Movies() {
     <div className="flex flex-col w-full">
       <Header />
       <div className="h-10 px-10 py-12">
-        <TopMovies />
         <NowPlayingMovie />
         <UpComingMovie />
+        <TopMovies />
       </div>
     </div>
   );

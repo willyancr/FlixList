@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Star, CirclePlus } from 'lucide-react';
-import { useData } from '../UserContext';
 import { MovieItem } from '../Types/MovieItem';
 import Header from '../Header/Header';
 import InfosDetails from './InfosDetails';
 import VoteAndAddWatchlist from './VoteAndAddWatchlist';
+import { useDataSerie } from '../Context/UserContextSeries';
 
 const serieURL = import.meta.env.VITE_API_SERIES;
 const apiKey = import.meta.env.VITE_API_KEY;
 const serieIMG = import.meta.env.VITE_IMG;
 
 function InfoSerie() {
-  const { selectedMovieSerie } = useData();
+  const { selectedMovieSerie } = useDataSerie();
   const [infoSerie, setInfoSerie] = useState({} as MovieItem);
 
   useEffect(() => {

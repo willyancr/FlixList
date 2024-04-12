@@ -2,10 +2,10 @@ import { BellDot } from 'lucide-react';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Link } from 'react-router-dom';
 import HandleMenus from '../HandleMenus';
-import { useData } from '../UserContext';
+import { useDataMovie } from '../Context/UserContextMovies';
 
 function Header() {
-  const { selectedItemMenu, handleClickMenu } = useData();
+  const { selectedItemMenu, handleClickMenu } = useDataMovie();
 
   return (
     <header>

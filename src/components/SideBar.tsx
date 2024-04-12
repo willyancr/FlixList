@@ -7,11 +7,11 @@ import {
   LogOut,
 } from 'lucide-react';
 import HandleMenus from './HandleMenus';
-import { useData } from './UserContext';
+import { useDataMovie } from './Context/UserContextMovies';
 import { Link } from 'react-router-dom';
 
 function SideBar() {
-  const { selectedItemMenu, handleClickMenu } = useData();
+  const { selectedItemMenu, handleClickMenu } = useDataMovie();
 
   return (
     <div className="grid grid-rows-[100px_1fr_1fr] grid-flow-col min-w-52 bg-projeto-secondary border-r border-projeto-border/30 h-screen">
