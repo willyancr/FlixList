@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useData } from '../UserContext';
+import { useDataMovie } from '../Context/UserContextMovies';
 import { MovieItem } from '../Types/MovieItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -9,11 +9,10 @@ import 'swiper/css/pagination';
 const movieIMG = import.meta.env.VITE_IMG;
 
 function UpComingMovie() {
-  const { upComingMovie, handleClickMovieSerie } = useData();
+  const { upComingMovie, handleClickMovieSerie } = useDataMovie();
 
   return (
     <div className="mt-6">
-      
       <h2 className="border-b border-projeto-border/50 mb-6">
         Os <span>{upComingMovie?.length}</span> filmes a serem lançados
       </h2>

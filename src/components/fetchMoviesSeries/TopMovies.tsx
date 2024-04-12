@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { MovieItem } from '../Types/MovieItem';
-import { useData } from '../UserContext';
+import { useDataMovie } from '../Context/UserContextMovies';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -9,9 +9,9 @@ import 'swiper/css/pagination';
 const movieIMG = import.meta.env.VITE_IMG;
 
 function TopMovies() {
-  const { topMovies, handleClickMovieSerie } = useData();
+  const { topMovies, handleClickMovieSerie } = useDataMovie();
   return (
-    <div>
+    <div className="mt-6">
       <h2 className="border-b border-projeto-border/50 mb-6">
         Top <span>{topMovies?.length}</span> filmes mais bem avaliados
       </h2>
