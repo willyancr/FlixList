@@ -1,17 +1,17 @@
-import { useData } from '../UserContext';
 import { Link } from 'react-router-dom';
 import { MovieItem } from '../Types/MovieItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useDataSerie } from '../Context/UserContextSeries';
 
 const serieIMG = import.meta.env.VITE_IMG;
 
 function TopSeries() {
-  const { topSeries, handleClickMovieSerie } = useData();
+  const { topSeries, handleClickMovieSerie } = useDataSerie();
   return (
-    <div >
+    <div>
       <h2 className="border-b border-projeto-border/50 mb-6">
         Top <span>{topSeries?.length}</span> series de TV mais bem avaliados
       </h2>

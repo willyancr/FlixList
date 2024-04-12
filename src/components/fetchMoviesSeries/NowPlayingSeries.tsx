@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
-import { useData } from '../UserContext';
 import { MovieItem } from '../Types/MovieItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useDataSerie } from '../Context/UserContextSeries';
 
 const serieIMG = import.meta.env.VITE_IMG;
 
 function NowPlayingSeries() {
-  const { nowPlayingSeries, handleClickMovieSerie } = useData();
+  const { nowPlayingSeries, handleClickMovieSerie } = useDataSerie();
   return (
     <div className="mt-6">
       <h2 className="border-b border-projeto-border/50 mb-6">
